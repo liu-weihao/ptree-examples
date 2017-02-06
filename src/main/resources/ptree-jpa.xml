@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration type="jpa">  
+      
+    <!-- 指定数据连接驱动jar地址 -->  
+    <classPathEntry location="E:\\repository\\mysql\\mysql-connector-java\\5.1.9\\mysql-connector-java-5.1.9.jar" />  
+      
+    <!-- jdbc连接 -->  
+    <jdbcConnection 
+    	driverClass="com.mysql.jdbc.Driver"  
+        connectionURL="jdbc://127.0.0.1:3306/ptree?characterEncoding=utf-8" 
+        user="root"  
+        password="root" />
+        
+         <!-- 配置表信息 -->      
+        <tableConfiguration
+        	schema="ptree" 
+        	tableName="tb_ptree"  
+            beanName="PTree" 
+            enableComments="true">  
+            <!-- 
+            schema即为数据库名 
+            tableName为对应的数据库表 
+            beanName是要生成的实体类 
+            enableComments 是否生成注释（来自数据库字段的备注）  
+             -->  
+            <!-- 忽略列，不生成bean字段 -->  
+            <ignores>
+            	<column value="flag"/>
+            	<column value="remark"/>
+            </ignores>
+        </tableConfiguration>
+        
+        <!-- 业务代码的包名配置 -->
+        <packages base="com.dx.ss.examples" bean="bean" service="service" dao="dao"/>
+        
+        <!-- 基于JPA实现，配置JpaRepository的包名 -->
+        <reporitory targetPackage="com.dx.ss.examples.repository"/>
+        
+</configuration>
